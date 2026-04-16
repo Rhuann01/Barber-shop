@@ -107,19 +107,17 @@ async function seedDatabase() {
       },
     ];
 
-    // Criar 10 barbearias com nomes e endereços fictícios
+    
     const barbershops = [];
     for (let i = 0; i < 10; i++) {
       const name = creativeNames[i];
       const address = addresses[i];
       const imageUrl = images[i];
 
-      const barbershop = await prisma.barberShop.create({
-        // <-- S maiúsculo aqui
-        data: {
+      const barbershop = await prisma.barberShop.create({        data: {
           name,
-          adress: address, // <-- Ajustado pro "adress" do teu schema
-          imgURL: imageUrl, // <-- Ajustado pro "imgURL" do teu schema
+          adress: address, 
+          imgURL: imageUrl, 
           phones: ["(11) 99999-9999", "(11) 99999-9999"],
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
@@ -128,18 +126,18 @@ async function seedDatabase() {
 
       for (const service of services) {
         await prisma.barberShopService.create({
-          // <-- S maiúsculo aqui também
+         
           data: {
             name: service.name,
             description: service.description,
             price: service.price,
             barberShop: {
-              // <-- S maiúsculo na relação
+              
               connect: {
                 id: barbershop.id,
               },
             },
-            imgURL: service.imageUrl, // <-- Ajustado pro "imgURL" do teu schema
+            imgURL: service.imageUrl, 
           },
         });
       }
