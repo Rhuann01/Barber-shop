@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-
+import { cn } from "@/app/_lib/utils";
+import { Providers } from "./_components/ui/providers";
 const nunitoSans = Nunito_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
@@ -37,7 +37,9 @@ export default function RootLayout({
         nunitoSans.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }

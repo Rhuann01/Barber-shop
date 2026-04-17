@@ -7,3 +7,4 @@
 - [x] Git Hooks
 - [x] Adcionar husky e lint-staged para garantir formatação antes de commitar
 - [x] Adcionar git-commit-msg-linter  para garantir type nos commits.
+- [x] adcionando next-theme
