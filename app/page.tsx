@@ -1,6 +1,8 @@
 import { Search } from "lucide-react";
 import Header from "./_components/ui/header";
 import Image from "next/image";
+import { Card, CardContent } from "@/app/_components/ui/card";
+import { Badge } from "./_components/ui/badge";
 
 export default function Home() {
   return (
@@ -27,6 +29,17 @@ export default function Home() {
             className=" object-cover"
           />
         </div>
+
+        <Card className="mt-5">
+          <CardContent>
+            <div className=" flex w-full h-full">
+              <div className="flex flex-col px-5 pl-7 gap-2">
+                <Badge>Confirmado</Badge>
+              </div>
+              <div></div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </section>
   );
