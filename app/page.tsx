@@ -1,12 +1,33 @@
-import {Button} from "./_components/ui/button"
-import { Switch } from "./_components/ui/switch"
+import { Search } from "lucide-react";
+import Header from "./_components/ui/header";
+import Image from "next/image";
 
-export default function Home(){
+export default function Home() {
   return (
-    <section className=" flex flex-col gap-2 items-center justify-center w-screen h-screen bg-neutral-800 text-white font-black ">
-      <h1 className="">Hello next, quanto tempo</h1>
-      <Button> Teste </Button> 
-      <Switch />
+    <section className=" w-screen h-screen">
+      <Header />
+      <div className=" p-5 text-white">
+        <h1 className=" text-xl">Bem vindo, Rhuann!</h1>
+        <p>Quinta, 16 de abril</p>
+        <div className=" mt-10 flex items-center gap-2">
+          <input
+            type="text"
+            className="w-full h-10 px-4 py-2 rounded-sm border-2 border-white/16 "
+            placeholder="buscar"
+          />
+          <button className=" bg-purple-700 w-15 h-10 px-4 py-2 rounded-sm">
+            <Search />
+          </button>
+        </div>
+        <div className=" relative w-full h-37.5 mt-5">
+          <Image
+            alt="Banner da barbearia "
+            src="/Banner01.png"
+            fill
+            className=" object-cover"
+          />
+        </div>
+      </div>
     </section>
-  )
+  );
 }
