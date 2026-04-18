@@ -37,7 +37,7 @@ export default function RootLayout({
         nunitoSans.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col md:[&::-webkit-scrollbar]:hidden">
         <Providers>{children}</Providers>
       </body>
     </html>

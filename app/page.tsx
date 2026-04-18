@@ -1,13 +1,13 @@
-import { EyeIcon, FootprintsIcon, Search, StarIcon } from "lucide-react";
+import { Search } from "lucide-react";
 import Header from "./_components/header";
 import Image from "next/image";
 import { Card, CardContent } from "@/app/_components/ui/card";
-import { Badge } from "./_components/ui/badge";
-import { Avatar, AvatarImage } from "./_components/ui/avatar";
 import SectionTitle from "./_components/sectionTitle";
 import prisma from "./_lib/prisma";
 import { BarberShopItem } from "./_components/barbershop-item";
 import { Button } from "./_components/ui/button";
+import { QuickSearchOptions } from "./constants/search";
+import { BookingItem } from "./_components/booking-item";
 
 export default async function Home() {
   const barberShops = await prisma.barberShop.findMany();
@@ -37,26 +37,12 @@ export default async function Home() {
         {/* Busca rapida */}
 
         <div className=" flex items-center justify-start pt-4 gap-2 overflow-auto [&::-webkit-scrollbar]:hidden">
-          <Button className=" py-5 px-2.5" variant="secondary">
-            <Image src="/tesoura.svg" alt="Cabelo" width={16} height={16} />
-            <p>Cabelo</p>
-          </Button>
-          <Button className=" py-5 px-2.5" variant="secondary">
-            <Image src="/barba.svg" alt="Cabelo" width={16} height={16} />
-            <p>Barba</p>
-          </Button>
-          <Button className=" py-5 px-2.5" variant="secondary">
-            <Image src="/lamina.svg" alt="Cabelo" width={16} height={16} />
-            <p>Acabamento</p>
-          </Button>
-          <Button className=" py-5 px-2.5" variant="secondary">
-            <FootprintsIcon size={16} />
-            <p>Pesinho</p>
-          </Button>
-          <Button className=" py-5 px-2.5" variant="secondary">
-            <EyeIcon size={16} />
-            <p>Sobrancelha</p>
-          </Button>
+          {QuickSearchOptions.map((e) => (
+            <Button className=" py-5 px-2.5" variant="secondary" key={e.title}>
+              <Image src={e.imgUrl} alt="Cabelo" width={16} height={16} />
+              <p>{e.title}</p>
+            </Button>
+          ))}
         </div>
 
         {/* Banner */}
@@ -71,31 +57,11 @@ export default async function Home() {
         </div>
 
         <SectionTitle text="agendamentos">
-          <Card>
-            <CardContent className="flex justify-between p-0">
-              <div className="flex flex-col gap-2 pl-7">
-                <Badge className="bg-purple-950 text-purple-300">
-                  Confirmado
-                </Badge>
-                <h3 className="font-semibold">Corte de cabelo</h3>
-                <div className="flex items-center gap-2">
-                  <Avatar className="w-6 h-6">
-                    <AvatarImage src="https://i.pinimg.com/1200x/a1/8e/5f/a18e5f09224c7688da94720f387a2c48.jpg" />
-                  </Avatar>
-                  <p className="font-light">Vintager Barber</p>
-                </div>
-              </div>
-              <div className=" flex flex-col w-30 px-5 text-sm items-center justify-center border-l-2 border-solid">
-                <p>Abril</p>
-                <p className="text-2xl font-semibold">17</p>
-                <p>21:01</p>
-              </div>
-            </CardContent>
-          </Card>
+          <BookingItem />
         </SectionTitle>
 
         <SectionTitle text="Recomendados">
-          <div className="flex gap-3 overflow-auto">
+          <div className="flex gap-3 overflow-auto md:[&::-webkit-scrollbar]:hidden">
             {barberShops.map((barber) => (
               <BarberShopItem key={barber.id} barberShop={barber} />
             ))}
@@ -103,7 +69,7 @@ export default async function Home() {
         </SectionTitle>
 
         <SectionTitle text="Populares">
-          <div className="flex gap-3 overflow-auto">
+          <div className="flex gap-3 overflow-auto md:[&::-webkit-scrollbar]:hidden ">
             {popularBarberShops.map((barber) => (
               <BarberShopItem key={barber.id} barberShop={barber} />
             ))}
