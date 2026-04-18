@@ -10,3 +10,4 @@
 - [x] add next-theme
 - [x] add sectionTitle para ocutar grupos.
 - [] add card de agendamento flexivo e modular.
+- [] componentizar

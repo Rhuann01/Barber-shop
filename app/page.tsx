@@ -1,4 +1,4 @@
-import { Search, StarIcon } from "lucide-react";
+import { EyeIcon, FootprintsIcon, Search, StarIcon } from "lucide-react";
 import Header from "./_components/header";
 import Image from "next/image";
 import { Card, CardContent } from "@/app/_components/ui/card";
@@ -7,9 +7,15 @@ import { Avatar, AvatarImage } from "./_components/ui/avatar";
 import SectionTitle from "./_components/sectionTitle";
 import prisma from "./_lib/prisma";
 import { BarberShopItem } from "./_components/barbershop-item";
+import { Button } from "./_components/ui/button";
 
 export default async function Home() {
   const barberShops = await prisma.barberShop.findMany();
+  const popularBarberShops = await prisma.barberShop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  });
 
   return (
     <section className=" w-screen h-screen">
@@ -27,6 +33,34 @@ export default async function Home() {
             <Search />
           </button>
         </div>
+
+        {/* Busca rapida */}
+
+        <div className=" flex items-center justify-start pt-4 gap-2 overflow-auto [&::-webkit-scrollbar]:hidden">
+          <Button className=" py-5 px-2.5" variant="secondary">
+            <Image src="/tesoura.svg" alt="Cabelo" width={16} height={16} />
+            <p>Cabelo</p>
+          </Button>
+          <Button className=" py-5 px-2.5" variant="secondary">
+            <Image src="/barba.svg" alt="Cabelo" width={16} height={16} />
+            <p>Barba</p>
+          </Button>
+          <Button className=" py-5 px-2.5" variant="secondary">
+            <Image src="/lamina.svg" alt="Cabelo" width={16} height={16} />
+            <p>Acabamento</p>
+          </Button>
+          <Button className=" py-5 px-2.5" variant="secondary">
+            <FootprintsIcon size={16} />
+            <p>Pesinho</p>
+          </Button>
+          <Button className=" py-5 px-2.5" variant="secondary">
+            <EyeIcon size={16} />
+            <p>Sobrancelha</p>
+          </Button>
+        </div>
+
+        {/* Banner */}
+
         <div className=" relative w-full h-37.5 mt-5">
           <Image
             alt="Banner da barbearia "
@@ -67,7 +101,24 @@ export default async function Home() {
             ))}
           </div>
         </SectionTitle>
+
+        <SectionTitle text="Populares">
+          <div className="flex gap-3 overflow-auto">
+            {popularBarberShops.map((barber) => (
+              <BarberShopItem key={barber.id} barberShop={barber} />
+            ))}
+          </div>
+        </SectionTitle>
       </div>
+      <footer>
+        <Card>
+          <CardContent>
+            <p className=" text-gray-400">
+              © 2026 Copyright <strong>FSW Barber</strong>
+            </p>
+          </CardContent>
+        </Card>
+      </footer>
     </section>
   );
 }
