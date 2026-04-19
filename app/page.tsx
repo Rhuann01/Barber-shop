@@ -1,7 +1,6 @@
 import { Search } from "lucide-react";
 import Header from "./_components/header";
 import Image from "next/image";
-import { Card, CardContent } from "@/app/_components/ui/card";
 import SectionTitle from "./_components/sectionTitle";
 import prisma from "./_lib/prisma";
 import { BarberShopItem } from "./_components/barbershop-item";
