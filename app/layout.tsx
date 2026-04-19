@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/app/_lib/utils";
 import { Providers } from "./_components/providers";
+import { Card, CardContent } from "./_components/ui/card";
 const nunitoSans = Nunito_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
@@ -38,7 +39,18 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col md:[&::-webkit-scrollbar]:hidden">
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          {/* <footer>
+            <Card>
+              <CardContent>
+                <p className=" text-gray-400">
+                  © 2026 Copyright <strong>FSW Barber</strong>
+                </p>
+              </CardContent>
+            </Card>
+          </footer> */}
+        </Providers>
       </body>
     </html>
   );

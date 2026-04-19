@@ -4,6 +4,7 @@ import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { StarIcon } from "lucide-react";
+import Link from "next/link";
 
 export const BarberShopItem = ({ barberShop }: { barberShop: BarberShop }) => {
   return (
@@ -33,7 +34,7 @@ export const BarberShopItem = ({ barberShop }: { barberShop: BarberShop }) => {
           </h3>
           <p className="text-xs text-gray-400">{barberShop.adress}</p>
           <Button variant="secondary" className="mt-3 w-full">
-            Reservar
+            <Link href={`/barbershops/${barberShop.id}`}>Reservar</Link>
           </Button>
         </div>
       </CardContent>

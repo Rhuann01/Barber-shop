@@ -47,12 +47,12 @@ export default async function Home() {
 
         {/* Banner */}
 
-        <div className=" relative w-full h-37.5 mt-5">
+        <div className=" relative w-full h-37.5 md:h-130 mt-5 ">
           <Image
             alt="Banner da barbearia "
-            src="/Banner01.png"
+            src="/Banner.svg"
             fill
-            className=" object-cover"
+            className=" object-cover md:rounded-xl"
           />
         </div>
 
@@ -76,15 +76,6 @@ export default async function Home() {
           </div>
         </SectionTitle>
       </div>
-      <footer>
-        <Card>
-          <CardContent>
-            <p className=" text-gray-400">
-              © 2026 Copyright <strong>FSW Barber</strong>
-            </p>
-          </CardContent>
-        </Card>
-      </footer>
     </section>
   );
 }

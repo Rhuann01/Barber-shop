@@ -8,7 +8,7 @@ export default function Header() {
     <Card>
       <CardContent className=" flex items-center justify-between">
         <Image alt="Logo" src="/Logo.png" width={120} height={18} />
-        <Button size="icon">
+        <Button size="icon" variant="ghost">
           <MenuIcon />
         </Button>
       </CardContent>
