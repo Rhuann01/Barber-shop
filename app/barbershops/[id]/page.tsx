@@ -10,6 +10,7 @@ import { Button } from "@/app/_components/ui/button";
 import { PhoneItem } from "@/app/_components/phone-item";
 import { Footer } from "@/app/_components/ui/footer";
 import { SideBarSheet } from "@/app/_components/ui/sideebar-sheet";
+import { MeunuIconBtn } from "@/app/_components/ui/menuIconBtn";
 
 type Props = {
   params: Promise<{
@@ -41,18 +42,8 @@ export default async function BarberShopPage({ params }: Props) {
           fill
           className="object-cover"
         />
-        <div className=" absolute top-0 w-full  flex items-center justify-between px-5 py-5">
-          <Button variant="secondary" size="icon" asChild>
-            <Link href="/">
-              <ChevronLeft />
-            </Link>
-          </Button>
-          <SideBarSheet>
-            <Button variant="secondary" size="icon">
-              <MenuIcon />
-            </Button>
-          </SideBarSheet>
-        </div>
+
+        <MeunuIconBtn />
       </div>
 
       {/* DESCRIÇÃO */}
@@ -85,8 +76,8 @@ export default async function BarberShopPage({ params }: Props) {
       {/* CONTATO */}
       <div className=" p-5 border-b border-solid -mt-6">
         <SectionTitle text="Contato">
-          {barberShop.phones.map((tel) => (
-            <PhoneItem key={tel} phone={tel} />
+          {barberShop.phones.map((tel, index) => (
+            <PhoneItem key={index} phone={tel} />
           ))}
         </SectionTitle>
       </div>

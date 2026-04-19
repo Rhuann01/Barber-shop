@@ -1,9 +1,12 @@
+"use client";
+
 import { Avatar } from "@/app/_components/ui/avatar";
 import { AvatarImage } from "@/app/_components/ui/avatar";
 import { QuickSearchOptions } from "@/app/constants/search";
 import { Calendar, HomeIcon, LogOutIcon } from "lucide-react";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -51,19 +54,20 @@ export const SideBarSheet = ({ children }: { children: ReactNode }) => {
           </div>
           <div className=" py-5 pb-6 border-b border-solid flex flex-col gap-2 items-center ">
             {QuickSearchOptions.map((option) => (
-              <Button
-                variant="ghost"
-                key={option.title}
-                className="flex w-full justify-start gap-3"
-              >
-                <Image
-                  src={option.imgUrl}
-                  alt={option.title}
-                  width={16}
-                  height={16}
-                />
-                <p>{option.title}</p>
-              </Button>
+              <SheetClose key={option.title} asChild>
+                <Button
+                  variant="ghost"
+                  className="flex w-full justify-start gap-3"
+                >
+                  <Image
+                    src={option.imgUrl}
+                    alt={option.title}
+                    width={16}
+                    height={16}
+                  />
+                  <p>{option.title}</p>
+                </Button>
+              </SheetClose>
             ))}
           </div>
           <div className=" py-5 pb-6  flex flex-col gap-2 items-center ">

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/app/_lib/utils";
-import { Providers } from "./_components/providers";
 import { Toaster } from "sonner";
 const nunitoSans = Nunito_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -36,13 +35,12 @@ export default function RootLayout({
         geistMono.variable,
         "font-sans",
         nunitoSans.variable,
+        "dark",
       )}
     >
       <body className="min-h-full flex flex-col md:[&::-webkit-scrollbar]:hidden">
-        <Providers>
-          {children}
-          <Toaster theme="dark" />
-        </Providers>
+        {children}
+        <Toaster theme="dark" />
       </body>
     </html>
   );
