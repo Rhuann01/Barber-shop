@@ -4,6 +4,12 @@ import prisma from "@/app/_lib/prisma";
 import { MapPinIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ChevronLeft, MenuIcon } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/app/_components/ui/button";
+import { PhoneItem } from "@/app/_components/phone-item";
+import { Footer } from "@/app/_components/ui/footer";
+import { SideBarSheet } from "@/app/_components/ui/sideebar-sheet";
 
 type Props = {
   params: Promise<{
@@ -26,7 +32,7 @@ export default async function BarberShopPage({ params }: Props) {
 
   return (
     <section className="font-bold text-white">
-      {/* DESCRIÇÃO */}
+      {/* IMAGEM */}
 
       <div className="relative w-full h-62">
         <Image
@@ -35,6 +41,18 @@ export default async function BarberShopPage({ params }: Props) {
           fill
           className="object-cover"
         />
+        <div className=" absolute top-0 w-full  flex items-center justify-between px-5 py-5">
+          <Button variant="secondary" size="icon" asChild>
+            <Link href="/">
+              <ChevronLeft />
+            </Link>
+          </Button>
+          <SideBarSheet>
+            <Button variant="secondary" size="icon">
+              <MenuIcon />
+            </Button>
+          </SideBarSheet>
+        </div>
       </div>
 
       {/* DESCRIÇÃO */}
@@ -64,6 +82,15 @@ export default async function BarberShopPage({ params }: Props) {
           ))}
         </SectionTitle>
       </div>
+      {/* CONTATO */}
+      <div className=" p-5 border-b border-solid -mt-6">
+        <SectionTitle text="Contato">
+          {barberShop.phones.map((tel) => (
+            <PhoneItem key={tel} phone={tel} />
+          ))}
+        </SectionTitle>
+      </div>
+      <Footer />
     </section>
   );
 }

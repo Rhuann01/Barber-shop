@@ -33,7 +33,7 @@ export const BarberShopItem = ({ barberShop }: { barberShop: BarberShop }) => {
             {barberShop.name}
           </h3>
           <p className="text-xs text-gray-400">{barberShop.adress}</p>
-          <Button variant="secondary" className="mt-3 w-full">
+          <Button variant="secondary" className="mt-3 w-full" asChild>
             <Link href={`/barbershops/${barberShop.id}`}>Reservar</Link>
           </Button>
         </div>

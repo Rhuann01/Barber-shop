@@ -10,7 +10,7 @@ interface ServiceProps {
 export const ServicesItem = ({ service }: ServiceProps) => {
   return (
     <Card className="mb-1 py-3">
-      <CardContent className=" flex w-full h-30 items-center justify-center gap-2 px-3">
+      <CardContent className=" flex w-full h-25 items-center justify-center gap-2 px-3">
         {/* IMAGE */}
         <div className=" relative min-w-30 h-full ">
           <Image
@@ -20,6 +20,7 @@ export const ServicesItem = ({ service }: ServiceProps) => {
             className="object-cover rounded-lg"
           />
         </div>
+
         {/* BODY */}
         <div className="w-full h-full flex flex-col ml-1 justify-between">
           {/* NOME E DESCRIÇÂO */}

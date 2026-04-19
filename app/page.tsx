@@ -8,6 +8,7 @@ import { BarberShopItem } from "./_components/barbershop-item";
 import { Button } from "./_components/ui/button";
 import { QuickSearchOptions } from "./constants/search";
 import { BookingItem } from "./_components/booking-item";
+import { Footer } from "./_components/ui/footer";
 
 export default async function Home() {
   const barberShops = await prisma.barberShop.findMany();
@@ -76,6 +77,7 @@ export default async function Home() {
           </div>
         </SectionTitle>
       </div>
+      <Footer />
     </section>
   );
 }
