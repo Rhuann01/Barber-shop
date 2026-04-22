@@ -40,10 +40,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
 /app/generated/prisma
 
 # docker-data 
 
 .postgres-data
 .postgres-data/
+
+# md to anotations
+
+todo.md
