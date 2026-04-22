@@ -55,12 +55,11 @@ export const SideBarSheet = ({ children }: { children: ReactNode }) => {
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>
+                  <DialogTitle asChild>
                     <p className=" text-center">Faça login na plataforma</p>
                   </DialogTitle>
-                  <DialogDescription>
+                  <DialogDescription asChild>
                     <p className=" text-center">
-                      {" "}
                       Conecte-se usando sua conta do Google
                     </p>
                   </DialogDescription>
