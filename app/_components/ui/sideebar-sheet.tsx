@@ -24,61 +24,74 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./dialog";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export const SideBarSheet = ({ children }: { children: ReactNode }) => {
+  const { data } = useSession();
+  const handleLoginWithGoogleProvider = () => signIn();
+  const handleLogoutClick = () => signOut();
+
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Menu</SheetTitle>
-          {/*  <div className=" py-5 mt-1 pb-6 border-b border-solid flex gap-3 items-center">
-            <Avatar size="lg">
-              <AvatarImage
-                alt="avatar"
-                src="https://i.pinimg.com/736x/31/f3/cb/31f3cbc59e143a4a0193cef743b7b775.jpg"
-              />
-            </Avatar>
-            <div>
-              <p className=" font-bold">Rhuann Costa</p>
-              <p className="text-xs">rhuann.costa@gmail.com</p>
+          {/* Mostra o card do user se tiver logado e a opção de se logar se não tiver logado */}
+          {/* cartão do user */}
+          {data?.user && (
+            <div className=" py-5 mt-1 pb-6 border-b border-solid flex gap-3 items-center">
+              <Avatar size="lg">
+                {/* usei "??" e não "as string" porque com ?? caso o user não tenha foto não quebra a aplicação com uma foto vazia */}
+                <AvatarImage
+                  alt="avatar"
+                  src={data?.user?.image ?? "/noImgPerfil.jpg"}
+                />
+              </Avatar>
+              <div>
+                <p className=" font-bold">{data?.user?.name}</p>
+                <p className="text-xs">{data?.user?.email}</p>
+              </div>
             </div>
-          </div> */}
-
-          <div className="flex items-center justify-between py-5 mt-1">
-            <h2 className=" font-semibold text-lg">Olá, faça seu login!</h2>
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="icon">
-                  <LogInIcon />
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle asChild>
-                    <p className=" text-center">Faça login na plataforma</p>
-                  </DialogTitle>
-                  <DialogDescription asChild>
-                    <p className=" text-center">
-                      Conecte-se usando sua conta do Google
-                    </p>
-                  </DialogDescription>
-                  <Button
-                    variant="outline"
-                    className="flex items-center justify-center"
-                  >
-                    <Image
-                      alt="Fazer link com google"
-                      src="Google.svg"
-                      width={14}
-                      height={14}
-                    />
-                    <p className="font-bold">Google</p>
+          )}
+          {/* cartão da opçao de logar */}
+          {!data?.user && (
+            <div className="flex items-center justify-between py-5 mt-1">
+              <h2 className=" font-semibold text-lg">Olá, faça seu login!</h2>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="icon">
+                    <LogInIcon />
                   </Button>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
-          </div>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle asChild>
+                      <p className=" text-center">Faça login na plataforma</p>
+                    </DialogTitle>
+                    <DialogDescription asChild>
+                      <p className=" text-center">
+                        Conecte-se usando sua conta do Google
+                      </p>
+                    </DialogDescription>
+                    <Button
+                      onClick={handleLoginWithGoogleProvider}
+                      variant="outline"
+                      className="flex items-center justify-center"
+                    >
+                      <Image
+                        alt="Fazer link com google"
+                        src="Google.svg"
+                        width={14}
+                        height={14}
+                      />
+                      <p className="font-bold">Google</p>
+                    </Button>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            </div>
+          )}
 
           <div className=" py-5 pb-6 border-b border-solid flex flex-col gap-2 items-center ">
             <Button
@@ -115,7 +128,11 @@ export const SideBarSheet = ({ children }: { children: ReactNode }) => {
             ))}
           </div>
           <div className=" py-5 pb-6  flex flex-col gap-2 items-center ">
-            <Button variant="ghost" className=" w-full flex justify-start">
+            <Button
+              variant="ghost"
+              className=" w-full flex justify-start"
+              onClick={handleLogoutClick}
+            >
               <LogOutIcon /> Sair da conta
             </Button>
           </div>
