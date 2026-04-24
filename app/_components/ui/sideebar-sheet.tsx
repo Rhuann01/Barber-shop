@@ -24,11 +24,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./dialog";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export const SideBarSheet = ({ children }: { children: ReactNode }) => {
   const { data } = useSession();
   const handleLoginWithGoogleProvider = () => signIn();
+  const handleLogoutClick = () => signOut();
 
   return (
     <Sheet>
@@ -41,7 +42,11 @@ export const SideBarSheet = ({ children }: { children: ReactNode }) => {
           {data?.user && (
             <div className=" py-5 mt-1 pb-6 border-b border-solid flex gap-3 items-center">
               <Avatar size="lg">
-                <AvatarImage alt="avatar" src={data?.user?.image as string} />
+                {/* usei "??" e não "as string" porque com ?? caso o user não tenha foto não quebra a aplicação com uma foto vazia */}
+                <AvatarImage
+                  alt="avatar"
+                  src={data?.user?.image ?? "/noImgPerfil.jpg"}
+                />
               </Avatar>
               <div>
                 <p className=" font-bold">{data?.user?.name}</p>
@@ -123,7 +128,11 @@ export const SideBarSheet = ({ children }: { children: ReactNode }) => {
             ))}
           </div>
           <div className=" py-5 pb-6  flex flex-col gap-2 items-center ">
-            <Button variant="ghost" className=" w-full flex justify-start">
+            <Button
+              variant="ghost"
+              className=" w-full flex justify-start"
+              onClick={handleLogoutClick}
+            >
               <LogOutIcon /> Sair da conta
             </Button>
           </div>
