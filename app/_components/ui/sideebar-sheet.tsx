@@ -24,15 +24,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./dialog";
+import { signIn } from "next-auth/react";
 
 export const SideBarSheet = ({ children }: { children: ReactNode }) => {
+  const handleLoginWithGoogleProvider = () => signIn();
+
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Menu</SheetTitle>
-          {/*  <div className=" py-5 mt-1 pb-6 border-b border-solid flex gap-3 items-center">
+          {/* <div className=" py-5 mt-1 pb-6 border-b border-solid flex gap-3 items-center">
             <Avatar size="lg">
               <AvatarImage
                 alt="avatar"
@@ -64,6 +67,7 @@ export const SideBarSheet = ({ children }: { children: ReactNode }) => {
                     </p>
                   </DialogDescription>
                   <Button
+                    onClick={handleLoginWithGoogleProvider}
                     variant="outline"
                     className="flex items-center justify-center"
                   >
