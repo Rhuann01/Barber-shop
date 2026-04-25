@@ -9,7 +9,7 @@ import { SideBarSheet } from "./ui/sideebar-sheet";
 export default function Header() {
   return (
     <Card>
-      <CardContent className=" flex items-center justify-between">
+      <CardContent className=" flex items-center justify-between w-screen">
         <Image alt="Logo" src="/Logo.png" width={120} height={18} />
         <SideBarSheet>
           <Button size="icon" variant="ghost">

@@ -13,7 +13,7 @@ export default function SectionTitle({
   const [open, setOpen] = useState(true);
 
   return (
-    <section>
+    <section className=" w-full">
       <p
         onClick={() => setOpen(!open)}
         className=" text-xs uppercase text-gray-400 font-bold mb-3 mt-6 flex items-center justify-start gap-1"
