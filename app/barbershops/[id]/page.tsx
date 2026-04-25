@@ -4,12 +4,7 @@ import prisma from "@/app/_lib/prisma";
 import { MapPinIcon, StarIcon } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ChevronLeft, MenuIcon } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/app/_components/ui/button";
 import { PhoneItem } from "@/app/_components/phone-item";
-import { Footer } from "@/app/_components/ui/footer";
-import { SideBarSheet } from "@/app/_components/ui/sideebar-sheet";
 import { MeunuIconBtn } from "@/app/_components/ui/menuIconBtn";
 
 type Props = {
@@ -81,7 +76,6 @@ export default async function BarberShopPage({ params }: Props) {
           ))}
         </SectionTitle>
       </div>
-      <Footer />
     </section>
   );
 }

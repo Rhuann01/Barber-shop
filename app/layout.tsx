@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/app/_lib/utils";
 import { Toaster } from "sonner";
 import { AuthProvider } from "./_providers/auth";
+import { Footer } from "./_components/ui/footer";
 const nunitoSans = Nunito_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
@@ -40,8 +41,11 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col md:[&::-webkit-scrollbar]:hidden">
-        <AuthProvider>{children}</AuthProvider>
-        <Toaster theme="dark" />
+        <div className="flex-1">
+          <AuthProvider>{children}</AuthProvider>
+          <Toaster theme="dark" />
+        </div>
+        <Footer />
       </body>
     </html>
   );
