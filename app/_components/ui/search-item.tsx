@@ -27,7 +27,8 @@ export const SearchItem = () => {
   };
 
   useEffect(() => {
-    if (errors.search?.message) toast.error(errors.search.message);
+    if (errors.search?.message)
+      toast.error(errors.search.message, { position: "top-center" });
   }, [errors.search]);
 
   return (
