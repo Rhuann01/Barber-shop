@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { BarberShopItem } from "../_components/barbershop-item";
 import Header from "../_components/header";
 import SectionTitle from "../_components/sectionTitle";
@@ -25,6 +26,19 @@ const SearchBarberShop = async ({ searchParams }: Props) => {
       name: {
         contains: search,
         mode: "insensitive",
+      },
+    },
+  });
+
+  const barberService = await prisma.barberShop.findMany({
+    where: {
+      services: {
+        some: {
+          name: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
       },
     },
     include: {
@@ -66,7 +80,7 @@ const SearchBarberShop = async ({ searchParams }: Props) => {
           className=" flex flex-col items-center justify-start w-screen px-5"
         >
           <div className="pb-10">
-            {barbers.map((b) => (
+            {barberService.map((b) => (
               <SectionTitle key={b.id} text={b.name}>
                 {b.services.map((s) => (
                   <ServicesItem key={s.id} service={s} />
