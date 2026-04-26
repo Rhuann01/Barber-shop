@@ -27,6 +27,19 @@ const SearchBarberShop = async ({ searchParams }: Props) => {
         mode: "insensitive",
       },
     },
+  });
+
+  const barberService = await prisma.barberShop.findMany({
+    where: {
+      services: {
+        some: {
+          name: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+      },
+    },
     include: {
       services: {
         where: {
@@ -60,13 +73,13 @@ const SearchBarberShop = async ({ searchParams }: Props) => {
             ))}
           </div>
         </TabsContent>
-        {/* TODO: concertar bug na pesquisa de serviços, está filtrando o nome da barbearia também */}
         <TabsContent
           value="services"
           className=" flex flex-col items-center justify-start w-screen px-5"
         >
+          {/* TODO: adcionar foto da barbearia ao lado do nome */}
           <div className="pb-10">
-            {barbers.map((b) => (
+            {barberService.map((b) => (
               <SectionTitle key={b.id} text={b.name}>
                 {b.services.map((s) => (
                   <ServicesItem key={s.id} service={s} />
