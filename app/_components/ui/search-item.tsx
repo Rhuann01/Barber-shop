@@ -34,7 +34,7 @@ export const SearchItem = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className=" mt-10 flex items-center gap-2 w-full"
+      className="flex items-center gap-2 w-full"
     >
       <input
         {...register("search")}
