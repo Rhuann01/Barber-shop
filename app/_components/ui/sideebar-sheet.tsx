@@ -115,14 +115,19 @@ export const SideBarSheet = ({ children }: { children: ReactNode }) => {
                 <Button
                   variant="ghost"
                   className="flex w-full justify-start gap-3"
+                  asChild
                 >
-                  <Image
-                    src={option.imgUrl}
-                    alt={option.title}
-                    width={16}
-                    height={16}
-                  />
-                  <p>{option.title}</p>
+                  <Link
+                    href={`http://localhost:3000/barbershops?search=${option.title}`}
+                  >
+                    <Image
+                      src={option.imgUrl}
+                      alt={option.title}
+                      width={16}
+                      height={16}
+                    />
+                    <p>{option.title}</p>
+                  </Link>
                 </Button>
               </SheetClose>
             ))}

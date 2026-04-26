@@ -28,7 +28,14 @@ const SearchBarberShop = async ({ searchParams }: Props) => {
       },
     },
     include: {
-      services: true,
+      services: {
+        where: {
+          name: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+      },
     },
   });
 
@@ -53,15 +60,16 @@ const SearchBarberShop = async ({ searchParams }: Props) => {
             ))}
           </div>
         </TabsContent>
+        {/* TODO: concertar bug na pesquisa de serviços, está filtrando o nome da barbearia também */}
         <TabsContent
           value="services"
           className=" flex flex-col items-center justify-start w-screen px-5"
         >
-          <div className="grid grid-cols-1 gap-4 py-5">
+          <div className="pb-10">
             {barbers.map((b) => (
               <SectionTitle key={b.id} text={b.name}>
                 {b.services.map((s) => (
-                  <ServicesItem key={s.id} service={s}></ServicesItem>
+                  <ServicesItem key={s.id} service={s} />
                 ))}
               </SectionTitle>
             ))}
