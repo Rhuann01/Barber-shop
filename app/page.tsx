@@ -7,6 +7,7 @@ import { Button } from "./_components/ui/button";
 import { QuickSearchOptions } from "./constants/search";
 import { BookingItem } from "./_components/booking-item";
 import { SearchItem } from "./_components/ui/search-item";
+import Link from "next/link";
 
 export default async function Home() {
   const barberShops = await prisma.barberShop.findMany();
@@ -31,9 +32,18 @@ export default async function Home() {
         {/* Busca rapida */}
         <div className=" flex items-center justify-start pt-4 gap-2 overflow-auto [&::-webkit-scrollbar]:hidden">
           {QuickSearchOptions.map((e) => (
-            <Button className=" py-5 px-2.5" variant="secondary" key={e.title}>
-              <Image src={e.imgUrl} alt="Cabelo" width={16} height={16} />
-              <p>{e.title}</p>
+            <Button
+              className=" py-5 px-2.5"
+              variant="secondary"
+              key={e.title}
+              asChild
+            >
+              <Link
+                href={`http://localhost:3000/barbershops?search=${e.title}`}
+              >
+                <Image src={e.imgUrl} alt="Cabelo" width={16} height={16} />
+                <p>{e.title}</p>
+              </Link>
             </Button>
           ))}
         </div>
