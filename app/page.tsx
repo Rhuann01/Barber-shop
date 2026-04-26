@@ -6,7 +6,6 @@ import { BarberShopItem } from "./_components/barbershop-item";
 import { Button } from "./_components/ui/button";
 import { QuickSearchOptions } from "./constants/search";
 import { BookingItem } from "./_components/booking-item";
-import { Footer } from "./_components/ui/footer";
 import { SearchItem } from "./_components/ui/search-item";
 
 export default async function Home() {
@@ -25,8 +24,9 @@ export default async function Home() {
         <p>Quinta, 16 de abril</p>
 
         {/* Busca */}
-
-        <SearchItem />
+        <div className="mt-10">
+          <SearchItem />
+        </div>
 
         {/* Busca rapida */}
         <div className=" flex items-center justify-start pt-4 gap-2 overflow-auto [&::-webkit-scrollbar]:hidden">
