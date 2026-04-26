@@ -1,4 +1,3 @@
-import { toast } from "sonner";
 import { BarberShopItem } from "../_components/barbershop-item";
 import Header from "../_components/header";
 import SectionTitle from "../_components/sectionTitle";
@@ -74,11 +73,11 @@ const SearchBarberShop = async ({ searchParams }: Props) => {
             ))}
           </div>
         </TabsContent>
-        {/* TODO: concertar bug na pesquisa de serviços, está filtrando o nome da barbearia também */}
         <TabsContent
           value="services"
           className=" flex flex-col items-center justify-start w-screen px-5"
         >
+          {/* TODO: adcionar foto da barbearia ao lado do nome */}
           <div className="pb-10">
             {barberService.map((b) => (
               <SectionTitle key={b.id} text={b.name}>
