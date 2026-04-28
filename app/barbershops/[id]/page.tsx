@@ -64,7 +64,11 @@ export default async function BarberShopPage({ params }: Props) {
       <div className="px-5 pb-5 border-b border-solid">
         <SectionTitle text="serviços">
           {barberShop.services.map((service) => (
-            <ServicesItem key={service.id} service={service} />
+            <ServicesItem
+              key={service.id}
+              service={service}
+              barberShop={barberShop}
+            />
           ))}
         </SectionTitle>
       </div>

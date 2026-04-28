@@ -82,7 +82,7 @@ const SearchBarberShop = async ({ searchParams }: Props) => {
             {barberService.map((b) => (
               <SectionTitle key={b.id} text={b.name}>
                 {b.services.map((s) => (
-                  <ServicesItem key={s.id} service={s} />
+                  <ServicesItem key={s.id} service={s} barberShop={b} />
                 ))}
               </SectionTitle>
             ))}

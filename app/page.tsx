@@ -8,6 +8,7 @@ import { QuickSearchOptions } from "./constants/search";
 import { BookingItem } from "./_components/booking-item";
 import { SearchItem } from "./_components/ui/search-item";
 import Link from "next/link";
+import { UserHelloItem } from "./_components/ui/user-hello-item";
 
 export default async function Home() {
   const barberShops = await prisma.barberShop.findMany();
@@ -21,11 +22,10 @@ export default async function Home() {
     <section className=" w-screen">
       <Header />
       <div className=" p-5 text-white">
-        <h1 className=" text-xl">Bem vindo, Rhuann!</h1>
-        <p>Quinta, 16 de abril</p>
+        <UserHelloItem />
 
         {/* Busca */}
-        <div className="mt-10">
+        <div className="pt-5">
           <SearchItem />
         </div>
 

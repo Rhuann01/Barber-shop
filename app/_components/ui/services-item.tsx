@@ -1,13 +1,16 @@
-import { BarberShopService } from "@/app/generated/prisma/client";
+import { BarberShop, BarberShopService } from "@/app/generated/prisma/client";
 import { Card, CardContent } from "./card";
 import Image from "next/image";
 import { Button } from "./button";
+import { CalendarEditItem } from "./calendar-edit-item";
+import { Spinner } from "./spinner";
 
 interface ServiceProps {
   service: BarberShopService;
+  barberShop: Pick<BarberShop, "name">;
 }
 
-export const ServicesItem = ({ service }: ServiceProps) => {
+export const ServicesItem = ({ service, barberShop }: ServiceProps) => {
   return (
     <Card className="mb-1 py-3">
       <CardContent className=" flex w-full h-25 items-center justify-center gap-2 px-3">
@@ -36,9 +39,21 @@ export const ServicesItem = ({ service }: ServiceProps) => {
                 currency: "BRL",
               }).format(Number(service.price))}
             </p>
-            <Button variant="secondary" size="sm">
-              Reservar
-            </Button>
+
+            <CalendarEditItem
+              service={service}
+              barberShopName={
+                barberShop?.name ? (
+                  barberShop.name
+                ) : (
+                  <Spinner className="size-3" />
+                )
+              }
+            >
+              <Button variant="secondary" size="sm">
+                Reservar
+              </Button>
+            </CalendarEditItem>
           </div>
         </div>
       </CardContent>
