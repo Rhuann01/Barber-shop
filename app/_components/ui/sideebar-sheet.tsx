@@ -133,13 +133,15 @@ export const SideBarSheet = ({ children }: { children: ReactNode }) => {
             ))}
           </div>
           <div className=" py-5 pb-6  flex flex-col gap-2 items-center ">
-            <Button
-              variant="ghost"
-              className=" w-full flex justify-start"
-              onClick={handleLogoutClick}
-            >
-              <LogOutIcon /> Sair da conta
-            </Button>
+            {data?.user && (
+              <Button
+                variant="ghost"
+                className=" w-full flex justify-start"
+                onClick={handleLogoutClick}
+              >
+                <LogOutIcon /> Sair da conta
+              </Button>
+            )}
           </div>
         </SheetHeader>
       </SheetContent>
