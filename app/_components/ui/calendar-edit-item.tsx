@@ -21,6 +21,9 @@ import { createBooking } from "@/app/_actions/create-booking";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 import { getBooking } from "@/app/_actions/get-booking";
+import { Badge } from "./badge";
+import { SquareArrowOutUpRight } from "lucide-react";
+import { SingInDialog } from "../sing-in-dialog";
 
 interface PropsServices {
   service: BarberShopService;
@@ -150,6 +153,7 @@ com ela se pega todos as reservas do mesmo dia que o dia selecionado, e seta na 
                 </Button>
               ))}
             </div>
+
             <div className="p-5">
               <Card className="  py-5">
                 <CardContent className="flex flex-col px-5 gap-1">
@@ -192,9 +196,17 @@ com ela se pega todos as reservas do mesmo dia que o dia selecionado, e seta na 
             </Button>
           </SheetClose>
           {!data?.user && (
-            <p className="text-red-400 text-[0.65rem] text-center">
-              *você precisa está logado para agendamentos*
-            </p>
+            <div className="w-full flex items-center justify-center">
+              <SingInDialog>
+                <Badge
+                  variant="destructive"
+                  className=" text-[0.65rem] text-center"
+                >
+                  você precisa está logado para agendamentos
+                  <SquareArrowOutUpRight />
+                </Badge>
+              </SingInDialog>
+            </div>
           )}
         </SheetFooter>
       </SheetContent>
