@@ -67,6 +67,7 @@ com ela se pega todos as reservas do mesmo dia que o dia selecionado, e seta na 
   e os que não false , no retorno eu botei - ! - pq eu quero os que não estão na lista */
 
   const getTimeDate = (booking: Booking[]) => {
+    /* TODO: adiconar função de remover horários que já passaram */
     return TIME_LIST.filter((t) => {
       const hors = Number(t.split(":")[0]);
       const minutes = Number(t.split(":")[1]);
