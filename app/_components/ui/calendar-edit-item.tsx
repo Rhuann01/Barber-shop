@@ -2,10 +2,10 @@
 
 import { ptBR } from "date-fns/locale";
 import { Calendar } from "./calendar";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Button } from "./button";
 import { Card, CardContent } from "./card";
-import { BarberShopService } from "@/app/generated/prisma/client";
+import { BarberShopService, Booking } from "@/app/generated/prisma/client";
 import { format, set } from "date-fns";
 import { TIME_LIST } from "@/app/constants/hors";
 import {
@@ -20,6 +20,7 @@ import {
 import { createBooking } from "@/app/_actions/create-booking";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
+import { getBooking } from "@/app/_actions/get-booking";
 
 interface PropsServices {
   service: BarberShopService;
@@ -37,6 +38,42 @@ export const CalendarEditItem = ({
   const [selectedTime, setSelectedTime] = useState<string | undefined>(
     undefined,
   );
+  const [dayBooking, setDayBooking] = useState<Booking[]>([]);
+
+  /* Se cria uma chamada de "api" usando useEffect (que eu posso atualizar para react-query futuramente)
+com ela se pega todos as reservas do mesmo dia que o dia selecionado, e seta na variavel - bookings -
+*/
+
+  useEffect(() => {
+    const fetch = async () => {
+      if (!selectedDay) return;
+      const bookings = await getBooking({
+        date: selectedDay,
+        serviceId: service.id,
+      });
+      setDayBooking(bookings);
+    };
+
+    fetch();
+  }, [selectedDay, service.id]);
+
+  /* console.log(dayBooking); */
+
+  /* Cria um função que filtra os horários e faz um novo array, com filter quando algp é true ele mantem
+  quando é false ele apaga, e o - some - faz com que items que não estão na lista deem true 
+  e os que não false , no retorno eu botei - ! - pq eu quero os que não estão na lista */
+
+  const getTimeDate = (booking: Booking[]) => {
+    return TIME_LIST.filter((t) => {
+      const hors = Number(t.split(":")[0]);
+      const minutes = Number(t.split(":")[1]);
+      const hasBookingCurrentTime = booking.some(
+        (b) => b.date.getHours() === hors && b.date.getMinutes() === minutes,
+      );
+
+      return !hasBookingCurrentTime;
+    });
+  };
 
   const handlerCreateBooking = async () => {
     try {
@@ -49,15 +86,18 @@ export const CalendarEditItem = ({
         minutes: minutes,
         hours: hour,
       });
-
+      /* Criando o booking */
       await createBooking({
         serviceId: service.id,
         date: newDate,
         userId: data.user.id,
       });
 
+      /* Toast para ter respota da UI */
+
       toast.success("Reserva criada com sucesso", { position: "top-center" });
     } catch (error) {
+      /* Motra erro no terminal e resposta da UI */
       console.error(error);
       toast.error("erro ao criar reserva", { position: "top-center" });
     }
@@ -69,6 +109,12 @@ export const CalendarEditItem = ({
 
   const handlerTimeSelected = (t: string | undefined) => {
     setSelectedTime(t);
+  };
+
+  const handlerConfirm = () => {
+    setSelectedDay(undefined);
+    setSelectedTime(undefined);
+    setDayBooking([]);
   };
 
   return (
@@ -92,8 +138,8 @@ export const CalendarEditItem = ({
         />
         {selectedDay && (
           <section>
-            <div className="w-full overflow-x-auto p-5 flex align-center justify-center border-b-2 gap-3 [&::-webkit-scrollbar]:hidden">
-              {TIME_LIST.map((t) => (
+            <div className="w-full overflow-x-auto p-5 flex border-b-2 gap-3 [&::-webkit-scrollbar]:hidden">
+              {getTimeDate(dayBooking).map((t) => (
                 <Button
                   className=" rounded-full"
                   variant={t === selectedTime ? "default" : "outline"}
@@ -137,7 +183,10 @@ export const CalendarEditItem = ({
           <SheetClose asChild>
             <Button
               disabled={!selectedDay || !selectedTime || !data?.user}
-              onClick={handlerCreateBooking}
+              onClick={() => {
+                handlerCreateBooking();
+                handlerConfirm();
+              }}
             >
               Confirmar
             </Button>

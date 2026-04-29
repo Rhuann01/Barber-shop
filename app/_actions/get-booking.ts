@@ -8,7 +8,7 @@ interface GetBookingProps {
   date: Date;
 }
 
-export const getBooking = ({ date }: GetBookingProps) => {
+export const getBooking = async ({ date }: GetBookingProps) => {
   return prisma.booking.findMany({
     where: {
       date: {
