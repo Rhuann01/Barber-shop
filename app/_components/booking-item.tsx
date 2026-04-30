@@ -1,4 +1,4 @@
-import { format, getDay } from "date-fns";
+import { format, getDay, getMonth, getYear } from "date-fns";
 import {
   BarberShop,
   BarberShopService,
@@ -36,15 +36,22 @@ export const BookingItem = ({
   if (!booking) return;
 
   const { date } = booking;
-  const day = getDay(date);
+  const day = format(date, "dd");
   const month = format(date, "MMMM", { locale: ptBR });
   const hours = format(date, "kk:mm");
+  const isConfirmed = new Date() < date;
 
   return (
     <Card>
       <CardContent className="flex justify-between p-0">
         <div className="flex flex-col gap-2 pl-7">
-          <Badge className="bg-purple-950 text-purple-300">Confirmado</Badge>
+          <Badge
+            variant={
+              isConfirmed ? "default" : "secondary"
+            } /*  className="bg-purple-950 text-purple-300" */
+          >
+            {isConfirmed ? "Confirmado" : "Finalizado"}
+          </Badge>
           <h3 className="font-semibold">{services.name}</h3>
           <div className="flex items-center gap-2">
             <Avatar className="w-6 h-6">

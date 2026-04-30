@@ -18,7 +18,6 @@ export default async function Home() {
       name: "desc",
     },
   });
-
   const bookings = await getUserBookings();
 
   return (

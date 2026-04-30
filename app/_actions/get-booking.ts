@@ -33,6 +33,9 @@ export const getUserBookings = async () => {
     where: {
       userId: session?.user.id,
     },
+    orderBy: {
+      date: "desc",
+    },
     include: {
       service: {
         include: {
