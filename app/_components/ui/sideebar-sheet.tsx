@@ -105,8 +105,11 @@ export const SideBarSheet = ({ children }: { children: ReactNode }) => {
             <Button
               variant="ghost"
               className=" w-full flex justify-start items-center gap-2 "
+              asChild
             >
-              <Calendar size={18} /> Agendamentos
+              <Link href={"http://localhost:3000/bookings"}>
+                <Calendar size={18} /> Agendamentos
+              </Link>
             </Button>
           </div>
           <div className=" py-5 pb-6 border-b border-solid flex flex-col gap-2 items-center ">

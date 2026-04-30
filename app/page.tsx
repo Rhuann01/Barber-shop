@@ -9,6 +9,7 @@ import { BookingItem } from "./_components/booking-item";
 import { SearchItem } from "./_components/ui/search-item";
 import Link from "next/link";
 import { UserHelloItem } from "./_components/ui/user-hello-item";
+import { getUserBookings } from "./_actions/get-booking";
 
 export default async function Home() {
   const barberShops = await prisma.barberShop.findMany();
@@ -17,6 +18,8 @@ export default async function Home() {
       name: "desc",
     },
   });
+
+  const bookings = await getUserBookings();
 
   return (
     <section className=" w-screen">
@@ -59,8 +62,12 @@ export default async function Home() {
           />
         </div>
 
-        <SectionTitle text="agendamentos">
-          <BookingItem />
+        <SectionTitle text="ultimo agendamento">
+          <BookingItem
+            booking={bookings[0]}
+            services={bookings[0].service}
+            barberShop={bookings[0].service.barberShop}
+          />
         </SectionTitle>
 
         <SectionTitle text="Recomendados">
