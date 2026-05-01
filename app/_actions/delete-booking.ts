@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import prisma from "../_lib/prisma";
 
 export const deleteThisBooking = async (bookingId: string) => {
@@ -8,4 +9,5 @@ export const deleteThisBooking = async (bookingId: string) => {
       id: bookingId,
     },
   });
+  revalidatePath("/bookings");
 };

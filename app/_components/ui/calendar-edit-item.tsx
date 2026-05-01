@@ -24,6 +24,7 @@ import { getBooking } from "@/app/_actions/get-booking";
 import { Badge } from "./badge";
 import { SquareArrowOutUpRight } from "lucide-react";
 import { SingInDialog } from "../sing-in-dialog";
+import { before } from "node:test";
 
 interface PropsServices {
   service: BarberShopService;
