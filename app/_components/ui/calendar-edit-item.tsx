@@ -122,8 +122,6 @@ com ela se pega todos as reservas do mesmo dia que o dia selecionado, e seta na 
   };
 
   return (
-    // 1. Não exibir horarios já marcados
-
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="gap-0">

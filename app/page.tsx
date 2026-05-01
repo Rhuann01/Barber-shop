@@ -61,13 +61,15 @@ export default async function Home() {
           />
         </div>
 
-        <SectionTitle text="ultimo agendamento">
-          <BookingItem
-            booking={bookings[0]}
-            services={bookings[0].service}
-            barberShop={bookings[0].service.barberShop}
-          />
-        </SectionTitle>
+        {bookings.length > 0 && (
+          <SectionTitle text="ultimo agendamento">
+            <BookingItem
+              booking={bookings[0]}
+              services={bookings[0].service}
+              barberShop={bookings[0].service.barberShop}
+            />
+          </SectionTitle>
+        )}
 
         <SectionTitle text="Recomendados">
           <div className="flex gap-3 overflow-auto md:[&::-webkit-scrollbar]:hidden">
