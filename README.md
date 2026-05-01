@@ -2,22 +2,6 @@
 
 ![GitHub stars](https://img.shields.io/github/stars/Rhuann01/Barber-shop?style=for-the-badge&logo=github) ![GitHub forks](https://img.shields.io/github/forks/Rhuann01/Barber-shop?style=for-the-badge&logo=github) ![GitHub issues](https://img.shields.io/github/issues/Rhuann01/Barber-shop?style=for-the-badge&logo=github) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 
-## 📑 Table of Contents
-
-- [Barber-shop](#barber-shop)
-  - [📑 Table of Contents](#-table-of-contents)
-  - [📝 Description](#-description)
-  - [✨ Features](#-features)
-  - [🛠️ Tech Stack](#️-tech-stack)
-  - [⚡ Quick Start](#-quick-start)
-  - [📦 Key Dependencies](#-key-dependencies)
-  - [🚀 Run Commands](#-run-commands)
-  - [📁 Project Structure](#-project-structure)
-  - [🛠️ Development Setup](#️-development-setup)
-    - [Node.js/JavaScript Setup](#nodejsjavascript-setup)
-  - [👥 Contributing](#-contributing)
-  - [📜 License](#-license)
-
 ## 📝 Description
 
 Barber-shop is a high-performance, full-stack SaaS platform meticulously crafted to streamline barbershop operations and elevate the client booking experience. Developed using Next.js, React, and TypeScript, the application ensures a type-safe, responsive, and SEO-friendly environment. Key features include a robust scheduling engine, secure user authentication for both staff and customers, and a dedicated API-driven architecture that facilitates real-time data persistence through a scalable database. This modern web solution empowers barbers to manage their business efficiently while providing clients with a frictionless interface to book appointments anytime, anywhere.
